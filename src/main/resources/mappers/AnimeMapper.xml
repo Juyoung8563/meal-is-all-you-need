@@ -26,7 +26,9 @@
         VALUES (#{uuid}, #{title}, #{description})
     </insert>
     <select id="getAllAnimes" resultMap="AnimeResultMap">
-        SELECT anime_id, title, description, created_at
+#         SELECT anime_id, title, description, created_at
+        SELECT anime_id, title, description,
+               date_add(created_at, INTERVAL 9 HOUR) AS created_at
         FROM animes
         ORDER BY created_at
         -- ORDER BY created_at DESC;
