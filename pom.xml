@@ -75,6 +75,8 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>.env</include>
+                    <!-- 아... 누가 필요 없다고 그랬냐? -->
+                    <include>**/*.xml</include>
                 </includes>
             </resource>
         </resources>
