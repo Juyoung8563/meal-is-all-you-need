@@ -8,10 +8,7 @@ import org.example.mealisallyouneed.model.vo.Anime;
 import org.example.mealisallyouneed.model.vo.AnimeRequestDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,6 +30,16 @@ public class IndexController {
         return "index";
     }
 
+    @PostMapping("/vote")
+    public String vote(@RequestParam("uuid") String uuid) {
+        try (SqlSession session = MyBatisConfig.getSqlSessionFactory().openSession()) {
+            AnimeMapper animeMapper = session.getMapper(AnimeMapper.class);
+            animeMapper.insertAnimeVote(uuid);
+            session.commit();
+        }
+        return "redirect:/";
+    }
+
     @PostMapping("/anime")
     public String anime(Model model, @ModelAttribute AnimeRequestDTO dto) {
         try (SqlSession session = MyBatisConfig.getSqlSessionFactory().openSession()) {
@@ -41,7 +48,8 @@ public class IndexController {
                     new Anime(
                             UUID.randomUUID().toString(),
                             dto.title(), dto.description(),
-                            "" // default 라서
+                            "", // default 라서
+                            0 // join으로 생성될 것
                     ));
             logger.info(count + " anime inserted");
             // 커밋해주셔야해요... ㅠㅠ
