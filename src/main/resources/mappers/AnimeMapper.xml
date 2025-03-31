@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mapper 주의! -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 인터페이스 형태로 구현된 Mapper 경로 -> 패키지 포함 -->
+<!-- 경로 참조/복사 > 참조 복사 (패키지 경로까지 포함) -->
+<mapper namespace="org.example.mealisallyouneed.model.mapper.AnimeMapper">
+    <!-- id는 연결할 메서드 이름 -->
+    <!-- createdAt은 자동 설정할 것 -->
+    <insert id="insertAnime" parameterType="org.example.mealisallyouneed.model.vo.Anime">
+        INSERT INTO animes (anime_id, title, description)
+        VALUES (#{uuid}, #{title}, #{description})
+    </insert>
+</mapper>
