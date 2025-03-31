@@ -3,8 +3,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 인터페이스 형태로 구현된 Mapper 경로 -> 패키지 포함 -->
+<!-- 경로 참조/복사 > 참조 복사 (패키지 경로까지 포함) -->
 <mapper namespace="org.example.mealisallyouneed.model.mapper.TestMapper">
+    <!-- id는 연결할 메서드 이름 -->
     <select id="selectOnePlusOne" resultType="int">
-        SELECT 1 + 1
+        SELECT 1 + 2
     </select>
 </mapper>

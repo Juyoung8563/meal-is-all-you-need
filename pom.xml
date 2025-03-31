@@ -76,6 +76,8 @@
                 <includes>
                     <include>.env</include>
                     <!-- 아... 누가 필요 없다고 그랬냐? -->
+                    <!-- **/ 어느 경로에 있든지 -->
+                    <!-- .xml 확장자를 쓰면 빌드 파일에 넣어달라 -->
                     <include>**/*.xml</include>
                 </includes>
             </resource>
